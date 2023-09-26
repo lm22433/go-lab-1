@@ -56,6 +56,7 @@ func ask(s score, question question) score {
 func main() {
 	score := score(0)
 	for _, question := range questions() {
-		ask(score, question)
+		score = ask(score, question)
 	}
+	fmt.Printf("Final Score: %d\n", score)
 }
