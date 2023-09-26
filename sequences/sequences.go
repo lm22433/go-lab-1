@@ -27,11 +27,10 @@ func mapArray(f func(a int) int, array *[3]int) {
 }
 
 func main() {
-	intsSlice := []int{1, 2, 3, 4, 5}
-	mapSlice(addOne, intsSlice)
-	fmt.Println(intsSlice)
+	intsSlice := []int{2, 3, 4, 5, 6}
+	newSlice := intsSlice[1:3]
+	mapSlice(square, newSlice)
 
-	intsArray := [5]int{1, 2, 3, 4, 5}
-	mapArray(addOne, &intsArray)
-	fmt.Println(intsArray)
+	fmt.Println(intsSlice)
+	fmt.Println(newSlice)
 }
