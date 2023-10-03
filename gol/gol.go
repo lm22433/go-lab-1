@@ -1,7 +1,7 @@
 package main
 
-const ALIVE = 0xFF
-const DEAD = 0x00
+const ALIVE = 255
+const DEAD = 0
 
 // This function creates a new world of the same size of the current world.
 func createNewWorld(p golParams) [][]byte {
@@ -50,6 +50,7 @@ func countAliveNeighbors(p golParams, world [][]byte, x int, y int) int {
 
 // This function when given the world, returns the next state of the world.
 func calculateNextState(p golParams, world [][]byte) [][]byte {
+	// nextWorld is initialized so that all cells are dead.
 	nextWorld := createNewWorld(p)
 	// Iterate over the cells of the world.
 	for y := 0; y < p.imageHeight; y++ {
@@ -61,17 +62,11 @@ func calculateNextState(p golParams, world [][]byte) [][]byte {
 				// If the cell is alive and has 2 or 3 neighbors, it stays alive.
 				if neighbours == 2 || neighbours == 3 {
 					nextWorld[y][x] = ALIVE
-					// Otherwise, it dies.
-				} else {
-					nextWorld[y][x] = DEAD
 				}
 			case DEAD:
 				// If the cell is dead and has 3 neighbors, it becomes alive.
 				if neighbours == 3 {
 					nextWorld[y][x] = ALIVE
-					// Otherwise, it stays dead.
-				} else {
-					nextWorld[y][x] = DEAD
 				}
 			}
 		}
